@@ -1,26 +1,213 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --cream: #fdf8f0;
+  --butter: #f5e6c8;
+  --blush: #f9ddd5;
+  --sage: #b5c9b1;
+  --sage-dark: #7a9e75;
+  --brown-soft: #c49a7a;
+  --brown-dark: #8b5e3c;
+  --rose: #e8a0a0;
+  --rose-dark: #c97070;
+  --gold: #d4a843;
+  --lavender: #d4b8e0;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-cream: var(--cream);
+  --color-butter: var(--butter);
+  --color-blush: var(--blush);
+  --color-sage: var(--sage);
+  --color-brown-soft: var(--brown-soft);
+  --color-rose: var(--rose);
+  --color-gold: var(--gold);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #e8d5c4;
+  min-height: 100vh;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Lato', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #f5e6c8;
+}
+::-webkit-scrollbar-thumb {
+  background: #c49a7a;
+  border-radius: 999px;
+}
+
+/* Animations */
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.75; transform: scale(1.04); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-8px) rotate(2deg); }
+  66% { transform: translateY(-4px) rotate(-1deg); }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.1); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.1); }
+  70% { transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes petals-fall {
+  0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+@keyframes wave-text {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(196, 154, 122, 0.3), 0 0 20px rgba(196, 154, 122, 0.1); }
+  50% { box-shadow: 0 0 20px rgba(196, 154, 122, 0.6), 0 0 40px rgba(196, 154, 122, 0.3); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2.5s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, #8b5e3c 0%, #d4a843 25%, #c49a7a 50%, #d4a843 75%, #8b5e3c 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+.font-playfair { font-family: 'Playfair Display', serif; }
+.font-dancing { font-family: 'Dancing Script', cursive; }
+.font-lato { font-family: 'Lato', sans-serif; }
+
+/* Petal particles */
+.petal {
+  position: fixed;
+  pointer-events: none;
+  z-index: 999;
+  animation: petals-fall linear infinite;
+}
+
+/* Letter content styling */
+.letter-content p {
+  margin-bottom: 1.25rem;
+  line-height: 1.9;
+  color: #5a3e2b;
+}
+
+.letter-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Polaroid photo */
+.polaroid {
+  background: white;
+  padding: 8px 8px 24px 8px;
+  box-shadow: 2px 4px 12px rgba(0,0,0,0.15), 0 1px 3px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.polaroid:hover {
+  transform: scale(1.05) rotate(0deg) !important;
+  box-shadow: 4px 8px 20px rgba(0,0,0,0.25);
+  z-index: 10;
+  position: relative;
+}
+
+/* Garden background */
+.garden-bg {
+  background: linear-gradient(180deg, #87ceeb 0%, #b8e4b8 40%, #7ab87a 60%, #5a9e5a 100%);
+}
+
+/* Grass pattern */
+.grass-pattern {
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 8px,
+    rgba(80, 150, 80, 0.3) 8px,
+    rgba(80, 150, 80, 0.3) 10px
+  );
+}
+
+/* Hide number input spinners */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+/* Disable text selection during drag */
+.no-select {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Video styling */
+video {
+  border-radius: 16px;
+}
+
+/* Touch action for drag */
+.drag-item {
+  touch-action: none;
 }
