@@ -305,17 +305,17 @@ function FlowerItem({ flower, isCollected, basketRef, onCollect }: FlowerItemPro
   const itemRef = useRef<HTMLDivElement>(null);
   const [dragging, setDragging] = useState(false);
 
-  const checkDrop = useCallback(() => {
-    if (!basketRef.current || !itemRef.current) return;
+  const checkDrop = useCallback((point: { x: number; y: number }) => {
+    if (!basketRef.current) return;
     const basket = basketRef.current.getBoundingClientRect();
-    const item = itemRef.current.getBoundingClientRect();
 
-    const overlapX =
-      item.left < basket.right + 15 && item.right > basket.left - 15;
-    const overlapY =
-      item.top < basket.bottom + 15 && item.bottom > basket.top - 15;
+    const isOver =
+      point.x >= basket.left - 40 &&
+      point.x <= basket.right + 40 &&
+      point.y >= basket.top - 40 &&
+      point.y <= basket.bottom + 40;
 
-    if (overlapX && overlapY) {
+    if (isOver) {
       onCollect(flower.id);
     }
   }, [basketRef, flower.id, onCollect]);
@@ -327,13 +327,12 @@ function FlowerItem({ flower, isCollected, basketRef, onCollect }: FlowerItemPro
       ref={itemRef}
       drag
       dragSnapToOrigin={true}
-      dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-      dragElastic={0.25}
+      dragElastic={0.15}
       dragMomentum={false}
       onDragStart={() => setDragging(true)}
-      onDragEnd={() => {
+      onDragEnd={(_event, info) => {
         setDragging(false);
-        checkDrop();
+        checkDrop(info.point);
       }}
       className="drag-item absolute flex flex-col items-center cursor-grab active:cursor-grabbing z-20 no-select"
       style={{ left: flower.x, top: flower.y }}
