@@ -306,6 +306,10 @@ function FlowerItem({ flower, isCollected, basketRef, onCollect }: FlowerItemPro
   const itemRef = useRef<HTMLDivElement>(null);
   const [dragging, setDragging] = useState(false);
 
+  useEffect(() => {
+    controls.start({ scale: 1, rotate: 0, transition: { type: "spring", stiffness: 200 } });
+  }, [controls]);
+
   const checkDrop = useCallback(() => {
     if (!basketRef.current || !itemRef.current) return;
     const basket = basketRef.current.getBoundingClientRect();
@@ -341,8 +345,6 @@ function FlowerItem({ flower, isCollected, basketRef, onCollect }: FlowerItemPro
       style={{ left: flower.x, top: flower.y }}
       whileDrag={{ scale: 1.3, zIndex: 50 }}
       initial={{ scale: 0, rotate: -20 }}
-      animate={{ scale: 1, rotate: 0 }}
-      transition={{ type: "spring", stiffness: 200 }}
     >
       <motion.div
         className="w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-lg"
