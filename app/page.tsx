@@ -302,13 +302,8 @@ interface FlowerItemProps {
 }
 
 function FlowerItem({ flower, isCollected, basketRef, onCollect }: FlowerItemProps) {
-  const controls = useAnimation();
   const itemRef = useRef<HTMLDivElement>(null);
   const [dragging, setDragging] = useState(false);
-
-  useEffect(() => {
-    controls.start({ scale: 1, rotate: 0, transition: { type: "spring", stiffness: 200 } });
-  }, [controls]);
 
   const checkDrop = useCallback(() => {
     if (!basketRef.current || !itemRef.current) return;
@@ -316,16 +311,14 @@ function FlowerItem({ flower, isCollected, basketRef, onCollect }: FlowerItemPro
     const item = itemRef.current.getBoundingClientRect();
 
     const overlapX =
-      item.left < basket.right - 20 && item.right > basket.left + 20;
+      item.left < basket.right + 15 && item.right > basket.left - 15;
     const overlapY =
-      item.top < basket.bottom - 10 && item.bottom > basket.top + 10;
+      item.top < basket.bottom + 15 && item.bottom > basket.top - 15;
 
     if (overlapX && overlapY) {
       onCollect(flower.id);
-    } else {
-      controls.start({ x: 0, y: 0, transition: { type: "spring", stiffness: 300, damping: 25 } });
     }
-  }, [basketRef, controls, flower.id, onCollect]);
+  }, [basketRef, flower.id, onCollect]);
 
   if (isCollected) return null;
 
@@ -333,9 +326,10 @@ function FlowerItem({ flower, isCollected, basketRef, onCollect }: FlowerItemPro
     <motion.div
       ref={itemRef}
       drag
-      dragElastic={0.2}
+      dragSnapToOrigin={true}
+      dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+      dragElastic={0.25}
       dragMomentum={false}
-      animate={controls}
       onDragStart={() => setDragging(true)}
       onDragEnd={() => {
         setDragging(false);
@@ -345,6 +339,8 @@ function FlowerItem({ flower, isCollected, basketRef, onCollect }: FlowerItemPro
       style={{ left: flower.x, top: flower.y }}
       whileDrag={{ scale: 1.3, zIndex: 50 }}
       initial={{ scale: 0, rotate: -20 }}
+      animate={{ scale: 1, rotate: 0 }}
+      transition={{ type: "spring", stiffness: 200 }}
     >
       <motion.div
         className="w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-lg"
@@ -1231,23 +1227,33 @@ function MusicPlayer() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
   const [ready, setReady] = useState(false);
-  const [volume, setVolume] = useState(0.45);
 
-  // Auto-play on first user interaction with the page
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-    audio.volume = volume;
+    audio.volume = 0.45;
 
-    const tryPlay = () => {
+    const playAudio = () => {
       audio.play()
         .then(() => setPlaying(true))
         .catch(() => {});
-      document.removeEventListener("pointerdown", tryPlay);
     };
-    document.addEventListener("pointerdown", tryPlay, { once: true });
-    return () => document.removeEventListener("pointerdown", tryPlay);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    // Attempt immediate playback on mount
+    playAudio();
+
+    // Attach listeners for any early user gesture as fallback if browser blocked immediate autoplay
+    const events = ["pointerdown", "touchstart", "click", "keydown", "scroll"];
+    const handleGesture = () => {
+      playAudio();
+      events.forEach((evt) => window.removeEventListener(evt, handleGesture));
+    };
+
+    events.forEach((evt) => window.addEventListener(evt, handleGesture, { passive: true }));
+
+    return () => {
+      events.forEach((evt) => window.removeEventListener(evt, handleGesture));
+    };
   }, []);
 
   const toggle = () => {
@@ -1266,9 +1272,13 @@ function MusicPlayer() {
       <audio
         ref={audioRef}
         src="/bgm.mp3"
+        autoPlay
         loop
         preload="auto"
-        onCanPlay={() => setReady(true)}
+        onCanPlay={() => {
+          setReady(true);
+          audioRef.current?.play().then(() => setPlaying(true)).catch(() => {});
+        }}
       />
 
       <motion.div
