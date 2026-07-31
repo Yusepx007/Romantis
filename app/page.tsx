@@ -968,51 +968,29 @@ function Screen4() {
             <em> kamu adalah segalanya bagiku.</em>
           </p>
           <p>
-            Sayang, kamu bukan sekadar seseorang yang hadir dalam hidupku. Kamu adalah
+            Sayang, meskipun ratusan kilometer membentang di antara kita dan kita terpisah oleh jarak, kamu adalah
             <strong> pasanganku</strong> — dalam arti yang paling penuh dan paling tulus.
-            Kamu adalah tangan yang ingin aku pegang di setiap persimpangan jalan, suara
-            yang ingin aku dengar di pagi hari, dan cerita yang ingin aku ceritakan di
-            akhir setiap harinya. Betapa beruntungnya aku bisa menyebutmu milikku... 🌸
+            Jarak memang memisahkan raga kita, tapi tidak pernah sekalipun bisa mengurangi rasa sayang dan rinduku padamu. Betapa beruntungnya aku bisa menyebutmu milikku... 🌸
           </p>
           <p>
-            Tahu nggak, ay? Ada satu hal dari kamu yang selalu bikin aku kagum lagi dan
-            lagi — yaitu cara kamu hadir. Bukan hanya secara fisik, tapi cara kamu benar-benar
-            <em> ada</em>: cara kamu mendengarkan, cara kamu peduli pada hal-hal kecil yang
-            sering orang lain abaikan, cara kamu tetap hangat bahkan di hari-hari yang
-            melelahkan. Itu yang bikin kamu spesial, sayang. Itu yang bikin aku
-            jatuh cinta berulang kali setiap harinya. ☀️
+            Tahu nggak, ay? Berjuang dalam hubungan LDR ini membuat aku makin kagum sama kamu. Cara kamu tetap setia, cara kamu menyapa lewat pesan dan suara tiap hari, dan cara kamu selalu memberikan kehangatan meskipun kita hanya bisa saling tatap di layar — itu semua luar biasa. Kamu adalah rumah tempat hatiku selalu pulang, sejauh apa pun aku berada. ☀️
           </p>
           <p>
-            Berdua sama kamu itu rasanya seperti menemukan rumah yang paling nyaman.
-            Nggak perlu pura-pura, nggak perlu sempurna. Di sisimu, aku bisa jadi aku
-            yang paling apa adanya — dan itu adalah perasaan paling mewah yang pernah
-            aku rasakan. Kamu adalah tempat pulangku, ay. 💛
+            Setiap kali rindu ini datang melanda, aku selalu membayangkan momen di mana nanti kita bisa bertemu langsung, duduk berdua tanpa perantara layar, dan memelukmu erat. Rasa rindu ini adalah bukti betapa berharganya kamu dalam hidupku, ay. 💛
           </p>
           <p>
-            Kamu juga adalah alasan aku terus ingin berkembang. Setiap kali aku lihat
-            betapa kerasnya kamu berusaha, betapa tulusnya kamu menyayangi, aku selalu
-            bergumam dalam hati: <em>&ldquo;aku harus jadi seseorang yang layak buat kamu.&rdquo;</em>{" "}
-            Kamu menginspirasi aku tanpa kamu sendiri menyadarinya. Dan itu adalah salah
-            satu hal paling indah yang bisa diberikan seseorang ke orang lain. 🌺
+            Kamu adalah alasanku untuk terus semangat berkembang dan berjuang setiap harinya. Setiap kali aku merasa lelah, mengingat senyummu di video call selalu jadi obat dan kekuatan terbaik buat aku. 🌺
           </p>
           <p>
-            Makasih ya, sayang. Makasih udah sabar sama aku di hari-hari aku
-            nggak sempurna. Makasih udah mau ketawa bareng hal-hal bodoh bersamaku.
-            Makasih udah selalu ada — dengan caramu yang sederhana tapi sangat berarti.
-            Makasih udah memilih untuk ada di sini, bersamaku, De Yusep Purnama Satria,
-            yang nggak pernah berhenti bersyukur bisa mengenalmu. 💌
+            Makasih ya, sayang... Makasih udah selalu sabar, tulus, dan bertahan berjuang bersama dalam jarak ini. Makasih udah memilih untuk selalu ada buat aku, De Yusep Purnama Satria, yang tidak pernah berhenti bersyukur memiliki pasangan hebat sepertimu. 💌
           </p>
           <p>
             Di hari istimewa ini, aku cuma pengen kamu tahu satu hal:
-            {" "}<strong>aku mencintaimu sepenuhnya</strong> — tidak hanya di momen-momen
-            indah, tapi juga di hari-hari biasa yang penuh rutinitas. Setiap versi kamu,
-            aku terima dan aku sayangi. Semoga kita terus bisa bertumbuh bersama,
-            saling menguatkan, dan saling menjaga. 💕
+            {" "}<strong>aku mencintaimu sepenuhnya</strong>. Jarak ini cuma ujian sementara, dan aku percaya kita pasti bisa melaluinya bersama hingga saatnya tiba kita tidak perlu terpisah oleh jarak lagi. 💕
           </p>
           <p>
-            Aku cinta kamu, Fitri Maharani. Sekarang, besok, dan seterusnya.
-            Selamat merayakan National Girlfriend Day — karena buat aku, setiap harinya
-            adalah hari yang spesial selama kamu ada di sisiku. ❤️
+            Aku cinta kamu, Fitri Maharani. Sekarang, besok, dan selamanya.
+            Selamat merayakan National Girlfriend Day, sayangku. ❤️
           </p>
         </div>
 
