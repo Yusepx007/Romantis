@@ -980,6 +980,9 @@ function Screen4() {
             Makasih ya, sayang... Makasih udah selalu sabar, tulus, dan bertahan berjuang bersama dalam jarak ini. Makasih udah memilih untuk selalu ada buat aku, De Yusep Purnama Satria, yang tidak pernah berhenti bersyukur memiliki pasangan hebat sepertimu. 💌
           </p>
           <p>
+            Oh ya, satu hal lagi yang aku mau bilang — dan ini aku bilang dengan penuh sayang ya, sayang 😄 Aku udah hafal banget sama polamu: tiba-tiba drama, tiba-tiba marah tanpa alasan yang jelas, tiba-tiba bilang "udah putus aja" atau nuduh yang bukan-bukan... padahal aku tau banget, <em>itu semua cuma kangen yang ketahan sama gengsi</em>. 🙈 Kamu nggak perlu drama segitu buat bilang kangen sama aku, sayang. Next time, bilang aja langsung — aku selalu siap dengerin dan ada buat kamu. Karena sebenarnya, setiap kali kamu drama, hatiku juga kangen kamu sama kerasnya. 😅💕
+          </p>
+          <p>
             Di hari istimewa ini, aku cuma pengen kamu tahu satu hal:
             {" "}<strong>aku mencintaimu sepenuhnya</strong>. Jarak ini cuma ujian sementara, dan aku percaya kita pasti bisa melaluinya bersama hingga saatnya tiba kita tidak perlu terpisah oleh jarak lagi. 💕
           </p>
