@@ -1247,6 +1247,157 @@ function ProgressDots({ screen }: { screen: Screen }) {
 }
 
 // ─────────────────────────────────────────────
+// MUSIC PLAYER
+// ─────────────────────────────────────────────
+function MusicPlayer() {
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [playing, setPlaying] = useState(false);
+  const [ready, setReady] = useState(false);
+  const [volume, setVolume] = useState(0.45);
+
+  // Auto-play on first user interaction with the page
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.volume = volume;
+
+    const tryPlay = () => {
+      audio.play()
+        .then(() => setPlaying(true))
+        .catch(() => {});
+      document.removeEventListener("pointerdown", tryPlay);
+    };
+    document.addEventListener("pointerdown", tryPlay, { once: true });
+    return () => document.removeEventListener("pointerdown", tryPlay);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const toggle = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (playing) {
+      audio.pause();
+      setPlaying(false);
+    } else {
+      audio.play().then(() => setPlaying(true)).catch(() => {});
+    }
+  };
+
+  return (
+    <>
+      <audio
+        ref={audioRef}
+        src="/bgm.mp3"
+        loop
+        preload="auto"
+        onCanPlay={() => setReady(true)}
+      />
+
+      <motion.div
+        className="fixed top-4 right-4 z-40 flex items-center gap-2"
+        initial={{ opacity: 0, y: -20, scale: 0.8 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ delay: 1.5, type: "spring", stiffness: 200 }}
+      >
+        {/* Song title ticker — shown when playing */}
+        <AnimatePresence>
+          {playing && (
+            <motion.div
+              initial={{ opacity: 0, x: 20, width: 0 }}
+              animate={{ opacity: 1, x: 0, width: "auto" }}
+              exit={{ opacity: 0, x: 20, width: 0 }}
+              className="overflow-hidden"
+            >
+              <div
+                className="px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap"
+                style={{
+                  background: "rgba(255,255,255,0.85)",
+                  backdropFilter: "blur(10px)",
+                  color: "#8b5e3c",
+                  border: "1px solid rgba(196,154,122,0.3)",
+                  boxShadow: "0 2px 12px rgba(196,154,122,0.2)",
+                }}
+              >
+                🎵 Perfect — Ed Sheeran
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Player button */}
+        <motion.button
+          onClick={toggle}
+          className="relative flex items-center justify-center focus:outline-none"
+          style={{
+            width: "44px",
+            height: "44px",
+            borderRadius: "50%",
+            background: "rgba(255,255,255,0.88)",
+            backdropFilter: "blur(12px)",
+            border: "1.5px solid rgba(232,160,160,0.5)",
+            boxShadow: "0 4px 16px rgba(196,154,122,0.3)",
+          }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.92 }}
+          aria-label={playing ? "Pause music" : "Play music"}
+        >
+          {/* Vinyl spin ring */}
+          <motion.div
+            className="absolute inset-0 rounded-full"
+            style={{
+              border: "2px solid transparent",
+              borderTopColor: "#e8a0a0",
+              borderRightColor: "#d4a843",
+            }}
+            animate={playing ? { rotate: 360 } : { rotate: 0 }}
+            transition={{
+              duration: 2,
+              repeat: playing ? Infinity : 0,
+              ease: "linear",
+            }}
+          />
+
+          {/* Waveform bars — shown when playing */}
+          {playing ? (
+            <div className="flex items-end gap-0.5" style={{ height: "16px" }}>
+              {[1, 2, 3, 4].map((b) => (
+                <motion.div
+                  key={b}
+                  className="rounded-full"
+                  style={{ width: "3px", background: "#c97070" }}
+                  animate={{ height: ["4px", `${6 + b * 3}px`, "4px"] }}
+                  transition={{
+                    duration: 0.5 + b * 0.1,
+                    repeat: Infinity,
+                    delay: b * 0.1,
+                    ease: "easeInOut",
+                  }}
+                />
+              ))}
+            </div>
+          ) : (
+            // Play icon
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="#c97070">
+              <polygon points="2,1 13,7 2,13" />
+            </svg>
+          )}
+        </motion.button>
+
+        {/* Loading pulse if not ready */}
+        {!ready && (
+          <motion.div
+            className="absolute inset-0 rounded-full"
+            style={{ background: "rgba(232,160,160,0.2)", top: 0, right: 0, width: "44px", height: "44px" }}
+            animate={{ opacity: [0.3, 0.8, 0.3] }}
+            transition={{ duration: 1.2, repeat: Infinity }}
+          />
+        )}
+      </motion.div>
+    </>
+  );
+}
+
+// ─────────────────────────────────────────────
 // MAIN PAGE
 // ─────────────────────────────────────────────
 export default function RomanticPage() {
@@ -1272,6 +1423,7 @@ export default function RomanticPage() {
         )}
       </AnimatePresence>
 
+      <MusicPlayer />
       <ProgressDots screen={screen} />
     </div>
   );
