@@ -987,7 +987,7 @@ function Screen4() {
             {" "}<strong>aku mencintaimu sepenuhnya</strong>. Jarak ini cuma ujian sementara, dan aku percaya kita pasti bisa melaluinya bersama hingga saatnya tiba kita tidak perlu terpisah oleh jarak lagi. 💕
           </p>
           <p>
-            Aku cinta kamu, Fitri Maharani. Sekarang, besok, dan selamanya.
+            Aku cinta kamu, Fitri Maharani. Sekarang, besok, dan selamanya — <em>I love you more than words can ever say</em>.
             Selamat merayakan National Girlfriend Day, sayangku. ❤️
           </p>
         </div>
@@ -1180,7 +1180,7 @@ function Screen4() {
                 Aku cinta kamu, Fitri Maharani 💌
               </p>
               <p className="text-xs mt-1" style={{ color: "#c49a7a" }}>
-                Selamanya dan seterusnya ❤️
+                I love you more & selamanya ❤️
               </p>
             </motion.div>
           )}
